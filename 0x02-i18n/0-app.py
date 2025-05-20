@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from flask import Flask, render_template
 """
+Basic Flask app with a single route
 """
 
 
@@ -11,6 +12,6 @@ app = Flask(__name__)
 def home():
     return render_template("0-index.html")
 
+
 if __name__ == "__main__":
     app.run()
-
