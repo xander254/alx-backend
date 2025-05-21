@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_babel import Babel
 """
 Basic Flask app with a single route and babel instanse in a
@@ -31,7 +31,7 @@ def get_locale():
     """
     Get the best locale for the user
     """
-    return requets.accept_languages.best_match(app.config['LANGUAGES'])
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 if __name__ == "__main__":
