@@ -8,6 +8,10 @@ variable
 
 
 class Config:
+    """
+    Configuration class that sets supported languages and defaults
+    for Babel
+    """
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = "en"
     BABEL_DEFAULT_TIMEZONE = "UTC"
@@ -19,17 +23,18 @@ babel = Babel(app)
 
 
 @app.route("/")
-def home():
-    """
-    Return the index file for the stated route
-    """
+def home() -> str:
+    """Return the index file for the stated route"""
     return render_template("2-index.html")
 
 
 @babel.localeselector
-def get_locale():
+def get_locale() -> str:
     """
     Get the best locale for the user
+
+    Returns:
+        str: A language code such as 'en' or 'fr'
     """
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
