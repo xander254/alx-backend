@@ -31,7 +31,6 @@ def get_locale() -> str:
         str: A language code such as 'en' or 'fr'
     """
     locale_from_url = request.args.get("locale")
-    
     if locale_from_url in app.config['LANGUAGES']:
         return locale_from_url
 
