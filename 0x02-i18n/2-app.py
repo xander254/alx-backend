@@ -31,7 +31,7 @@ def get_locale():
     """
     Get the best locale for the user
     """
-    return reuets.accept_languages.best_match(app.config['LANGUAGES'])
+    return requets.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 if __name__ == "__main__":
