@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
-from flask import Flask, render_template, request
-from flask_babel import Babel, gettext as _
 """
 Basic Flask app with a single route and babel instanse in a
 variable
 """
+
+
+from flask import Flask, render_template, request
+from flask_babel import Babel, _, get_locale
+
 
 
 class Config:
@@ -19,7 +22,9 @@ class Config:
 
 app = Flask(__name__)
 app.config.from_object(Config)
+
 babel = Babel(app)
+app.jinja_env.globals['get_locale'] = get_locale
 
 
 @babel.localeselector
@@ -36,9 +41,7 @@ def get_locale() -> str:
 @app.route("/")
 def home() -> str:
     """Return the index file for the stated route"""
-    title = _("home_title")
-    header = _("home_header")
-    return render_template("3-index.html", title=title, header=header)
+    return render_template("3-index.html")
 
 
 if __name__ == "__main__":

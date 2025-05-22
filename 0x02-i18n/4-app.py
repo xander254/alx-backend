@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
+"""
+Flask app with a single route and babel instanse in a
+variable to force the locale from a url parameter
+"""
+
 from flask import Flask, render_template, request
-from flask_babel import Babel, gettext as _
-"""
-Basic Flask app with a single route and babel instanse in a
-variable
-"""
+from flask_babel import Babel, get_locale, _
 
 
 class Config:
@@ -20,12 +21,13 @@ class Config:
 app = Flask(__name__)
 app.config.from_object(Config)
 babel = Babel(app)
+app.jinja_env.globals['get_locale'] = get_locale
 
 
 @babel.localeselector
 def get_locale() -> str:
     """
-    Get the best locale for the user
+    Get the best locale from the user
 
     Returns:
         str: A language code such as 'en' or 'fr'
@@ -34,15 +36,13 @@ def get_locale() -> str:
     if locale_from_url in app.config['LANGUAGES']:
         return locale_from_url
 
-    return request.accept_languages.best_match(app.config['LANGUAGES'])
+    return (request.accept_languages.best_match(app.config['LANGUAGES']))
 
 
 @app.route("/")
 def home() -> str:
     """Return the index file for the stated route"""
-    title = _("home_title")
-    header = _("home_header")
-    return render_template("4-index.html", title=title, header=header)
+    return render_template("4-index.html")
 
 
 if __name__ == "__main__":
