@@ -4,6 +4,7 @@ Flask app with a single route and babel instanse in a
 variable to force the locale from a url parameter
 """
 
+
 from flask import Flask, render_template, request
 from flask_babel import Babel, get_locale, _
 
@@ -20,6 +21,7 @@ class Config:
 
 app = Flask(__name__)
 app.config.from_object(Config)
+
 babel = Babel(app)
 app.jinja_env.globals['get_locale'] = get_locale
 
