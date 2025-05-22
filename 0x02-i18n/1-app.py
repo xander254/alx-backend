@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
-from flask import Flask, render_template
-from flask_babel import Babel
 """
 Basic Flask app with a single route and babel instanse in a
 variable
 """
 
 
+from flask import Flask, render_template
+from flask_babel import Babel
+
+
 class Config:
+    """Babel config Class"""
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = "en"
     BABEL_DEFAULT_TIMEZONE = "UTC"
@@ -15,6 +18,8 @@ class Config:
 
 app = Flask(__name__)
 app.config.from_object(Config)
+
+
 babel = Babel(app)
 
 
