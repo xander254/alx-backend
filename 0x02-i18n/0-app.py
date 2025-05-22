@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 
 @app.route("/")
-def home():
+def home() -> str:
     """
     Return the index file for the stated route
     """
