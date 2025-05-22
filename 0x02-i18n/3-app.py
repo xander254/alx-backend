@@ -9,7 +9,6 @@ from flask import Flask, render_template, request
 from flask_babel import Babel, _, get_locale
 
 
-
 class Config:
     """
     Configuration class that sets supported languages and defaults
