@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-from flask import Flask, render_template, request
-from flask_babel import Babel
 """
 Basic Flask app with a single route and babel instanse in a
 variable
 """
+from flask import Flask, render_template, request
+from flask_babel import Babel
 
 
 class Config:
